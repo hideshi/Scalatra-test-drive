@@ -1,0 +1,45 @@
+- import com.github.hideshi.mywebapp.Employee
+-@ val employeeList:List[Employee]
+!!! XML
+!!!
+%html
+	%head
+		%title Employee List
+		:javascript
+			function onLoad() {
+				
+			}
+
+			function onClickAddNewEmployee() {
+				var form = document.forms["form"];
+				form.action = '/addnewemployee';
+				form.submit();
+			}
+
+			function onClickLogout() {
+				var form = document.forms["form"];
+				form.method = 'get';
+				form.action = '/index';
+				form.submit();
+			}
+
+			function onClickLink(value) {
+				var form = document.forms["form"];
+				form.action = '/employeedetail?id=' + value;
+				form.submit();
+			}
+
+	%body{:onload=>"onLoad()"}
+		%div{:align=>"center"}
+			%h1 Employee List
+			%form{:id=>"form", :method=>"post"}
+				%table{:border=>1}
+					%tr
+						%td
+							%button{:onclick=>"onClickAddNewEmployee()"} Add New Employee
+						%td
+							%button{:onclick=>"onClickLogout()"} Logout 
+					- for(Employee(id, name, age) <- employeeList)
+						%tr
+							%td{:colspan=>2}
+								%a(href="javascript:void(0)" value="#{id}" onclick="onClickLink(#{id})") = name

@@ -1,0 +1,41 @@
+!!! XML
+!!!
+%html
+	%head
+		%title Employee Details
+		:javascript
+			function onload() {
+
+			}
+
+			function onClickBack() {
+				var form = document.forms["form"];
+				form.action = "/employeelist";
+				form.submit();
+			}
+
+			function onClickSubmit() {
+				var form = document.forms["form"];
+				form.action = "/submitnewemployee";
+				form.submit();	
+			}
+
+	%body{:onload=>"onload()"}
+		%div{:align=>"center"}
+			%h1 Employee Details
+			%form{:name=>"form", :method=>"post"}
+				%table
+					%tr
+						%td
+							%button{:onclick=>"onClickBack()"} << Back
+					%tr
+						%td
+							Name:
+							%input{:type=>"text", :name=>"name"}
+					%tr
+						%td
+							Age:
+							%input{:type=>"text", :name=>"age"}
+					%tr
+						%td
+							%button{:onclick=>"onClickSubmit()"} Submit

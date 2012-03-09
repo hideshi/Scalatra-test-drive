@@ -1,0 +1,21 @@
+!!! XML
+!!!
+%html
+	%head
+		%title Employee Login
+	%body
+		%div{:align=>"center"}
+			%h1 Employee Login
+			%form{:method=>"post", :action=>"employeelist"}
+				%table
+					%tr
+						%td
+							User Name
+						%td
+							%input{:type=>"text"} 
+					%tr
+						%td
+							Password
+						%td
+							%input{:type=>"text"} 
+				%button Login
